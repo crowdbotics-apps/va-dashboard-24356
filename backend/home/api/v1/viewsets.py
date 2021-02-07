@@ -1,6 +1,11 @@
 from rest_framework import viewsets
 from rest_framework import authentication
-from .serializers import ContractSerializer, CustomTextSerializer, HomePageSerializer
+from .serializers import (
+    ContractSerializer,
+    CustomTextSerializer,
+    HomePageSerializer,
+    StatusSerializer,
+)
 from rest_framework.authentication import SessionAuthentication, TokenAuthentication
 from rest_framework.authtoken.serializers import AuthTokenSerializer
 from rest_framework.permissions import IsAdminUser
@@ -14,7 +19,7 @@ from home.api.v1.serializers import (
     HomePageSerializer,
     UserSerializer,
 )
-from home.models import Contract, CustomText, HomePage
+from home.models import Contract, CustomText, HomePage, Status
 
 
 class SignupViewSet(ModelViewSet):
@@ -61,3 +66,12 @@ class ContractViewSet(viewsets.ModelViewSet):
         authentication.TokenAuthentication,
     )
     queryset = Contract.objects.all()
+
+
+class StatusViewSet(viewsets.ModelViewSet):
+    serializer_class = StatusSerializer
+    authentication_classes = (
+        authentication.SessionAuthentication,
+        authentication.TokenAuthentication,
+    )
+    queryset = Status.objects.all()

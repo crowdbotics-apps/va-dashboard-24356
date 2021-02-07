@@ -56,3 +56,8 @@ class Contract(models.Model):
     contract_price = models.BigIntegerField()
     closing_date = models.DateField()
     status = models.TextField()
+
+
+class Status(models.Model):
+    "Generated Model"
+    stauts = models.TextField()
