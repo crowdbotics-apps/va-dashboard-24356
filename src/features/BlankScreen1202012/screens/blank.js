@@ -21,11 +21,13 @@ import { SlideMenuIcon } from "../../../navigator/slideMenuIcon"
 class Blank extends React.Component {
   constructor(props) {
     super(props)
+
     this.state = {
       TextInput_3: "",
       TextInput_9: "",
       TextInput_24: "",
-      DateTimePicker_13: new Date("")
+      DateTimePicker_13: new Date(""),
+      TextInput_28: ""
     }
   }
   static navigationOptions = ({ navigation }) => {
@@ -61,6 +63,12 @@ class Blank extends React.Component {
           this.setState({ DateTimePicker_13: selectedDate })
         }
       />
+      <Text>Current Status</Text>
+      <TextInput
+        placeholder="Sample text input placeholder"
+        value={this.state.TextInput_28}
+        onChangeText={nextValue => this.setState({ TextInput_28: nextValue })}
+      />
     </View>
   )
 }
@@ -74,17 +82,24 @@ const styles = StyleSheet.create({
   Text_17: {},
   TextInput_24: {},
   Text_11: {},
-  DateTimePicker_13: {}
+  DateTimePicker_13: {},
+  Text_26: {},
+  TextInput_28: {}
 })
+
 const mapStateToProps = state => {
   return {
     contractsTextInput3: state.apiReducer.contracts,
     contractsTextInput9: state.apiReducer.contracts,
     contractsTextInput24: state.apiReducer.contracts,
-    contractsText11: state.apiReducer.contracts
+    contractsText11: state.apiReducer.contracts,
+    contractsDateTimePicker13: state.apiReducer.contracts,
+    contractsTextInput28: state.apiReducer.contracts
   }
 }
+
 const mapDispatchToProps = () => {
   return {}
 }
+
 export default connect(mapStateToProps, mapDispatchToProps)(Blank)
